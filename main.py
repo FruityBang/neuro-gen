@@ -1,19 +1,22 @@
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI
 import uvicorn
-from pydantic import BaseModel
-from typing import Annotated
+from contextlib import asynccontextmanager
+from db import create_tables, delete_tables
+from router import v1_router
 
 
-app = FastAPI()
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    await delete_tables()
+    print('очистка')
+    await create_tables()
+    print('готова дб')
+    yield
+    print('stop')
 
 
-class ImageAdd(BaseModel):
-    title: str
-
-
-@app.post('/v1/image')
-def get_image(image: Annotated[ImageAdd, Depends()]):
-    return {'data': image}
+app = FastAPI(lifespan=lifespan)
+app.include_router(v1_router)
 
 
 if __name__ == '__main__':
