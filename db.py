@@ -7,7 +7,7 @@ engine = create_async_engine(
     'sqlite+aiosqlite:///images.db'
 )
 
-session = async_sessionmaker(engine, expire_on_commit=False)
+new_session = async_sessionmaker(engine, expire_on_commit=False)
 
 
 class Base(DeclarativeBase):
@@ -17,8 +17,8 @@ class Base(DeclarativeBase):
 class ImagesORM(Base):
     __tablename__ = 'images'
 
-    id: Mapped[int] = mapped_column(primary_key=True)
-    title: Mapped[str]
+#    id: Mapped[int] = mapped_column(primary_key=True)
+    title: Mapped[str] = mapped_column(primary_key=True, unique=True)
     name: Mapped[Optional[str]]
 
 
