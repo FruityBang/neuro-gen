@@ -60,5 +60,4 @@ api = TextToImageAPI('https://api-key.fusionbrain.ai/',
 model_id = api.get_model()
 uuid = api.generate('near blackhole', model_id)
 image = api.check_generation(uuid)
-file = open('image.jpeg', 'w')
-file.write(image)
+
