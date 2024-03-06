@@ -2,6 +2,7 @@ import requests
 import json
 import time
 
+
 API_KEY = '72F53422B9BB1C057F769850A722D2CD'
 SECRET_KEY = '5364984F7DB97F18739D7DC0B2451AB3'
 
@@ -22,7 +23,7 @@ class TextToImageAPI:
         data = response.json()
         return data[0]['id']
 
-    def generate(self, prompt, model_id, images=1, width=1024, height=1024):
+    def generate(self, prompt, model_id, images=1, width=1024, height=680):
         params = {
             'type': 'GENERATE',
             'numImages': images,
@@ -58,6 +59,8 @@ api = TextToImageAPI('https://api-key.fusionbrain.ai/',
                      api_key=API_KEY,
                      secret_key=SECRET_KEY)
 model_id = api.get_model()
-uuid = api.generate('near blackhole', model_id)
+uuid = api.generate('strong man', model_id)
 image = api.check_generation(uuid)
 
+f = open('image.png', 'w')
+f.write(image)

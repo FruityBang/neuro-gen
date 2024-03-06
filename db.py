@@ -20,6 +20,7 @@ class ImagesORM(Base):
 #    id: Mapped[int] = mapped_column(primary_key=True)
     title: Mapped[str] = mapped_column(primary_key=True, unique=True)
     name: Mapped[Optional[str]]
+    image: Mapped[Optional[bytes]]
 
 
 async def create_tables():

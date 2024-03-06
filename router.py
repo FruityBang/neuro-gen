@@ -11,7 +11,7 @@ async def send_image(image: ImageAdd) -> Image:
     return image
 
 
-@v1_router.get('')
-async def get_images() -> list[Image]:
-    images = await ImageRep.get_images()
-    return images
+#@v1_router.get('')
+#async def get_images() -> list[Image]:
+#    images = await ImageRep.get_images()
+#    return images

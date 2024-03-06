@@ -23,7 +23,6 @@ class ImageRep:
                 ).filter(ImagesORM.title == image_dict['title'])
             result = await session.execute(query)
             ex_image = result.scalars().one_or_none()
-            print(ex_image)
             if ex_image:
                 return ex_image
             name = translit(
