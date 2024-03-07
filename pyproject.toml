@@ -12,6 +12,7 @@ sqlalchemy = "^2.0.27"
 aiosqlite = "^0.20.0"
 requests = "^2.31.0"
 transliterate = "^1.10.2"
+opencv-python = "^4.9.0.80"
 
 
 [build-system]

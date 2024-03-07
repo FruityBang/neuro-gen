@@ -1,10 +1,14 @@
+import base64
 import requests
 import json
 import time
+import sys
 
 
 API_KEY = '72F53422B9BB1C057F769850A722D2CD'
 SECRET_KEY = '5364984F7DB97F18739D7DC0B2451AB3'
+WIDTH = 1024
+HEIGHT = 680
 
 
 class TextToImageAPI:
@@ -23,7 +27,7 @@ class TextToImageAPI:
         data = response.json()
         return data[0]['id']
 
-    def generate(self, prompt, model_id, images=1, width=1024, height=680):
+    def generate(self, prompt, model_id, images=1, width=WIDTH, height=HEIGHT):
         params = {
             'type': 'GENERATE',
             'numImages': images,
@@ -55,12 +59,29 @@ class TextToImageAPI:
             time.sleep(delay)
 
 
-api = TextToImageAPI('https://api-key.fusionbrain.ai/',
-                     api_key=API_KEY,
-                     secret_key=SECRET_KEY)
-model_id = api.get_model()
-uuid = api.generate('strong man', model_id)
-image = api.check_generation(uuid)
+def generate_image(prompt,
+                   url='https://api-key.fusionbrain.ai/',
+                   api_key=API_KEY,
+                   secret_key=SECRET_KEY):
 
-f = open('image.png', 'w')
-f.write(image)
+    api = TextToImageAPI(url=url, api_key=api_key, secret_key=secret_key)
+    model_id = api.get_model()
+    uuid = api.generate(prompt=prompt, model_id=model_id)
+    image = api.check_generation(uuid)
+    byte_image = base64.b64decode(image)
+    byte_image_size = float('{:.2f}'.format(sys.getsizeof(byte_image) / 1024))
+    return byte_image, byte_image_size, WIDTH, HEIGHT
+
+#byte_image, byte_image_size, width, height = (
+#                generate_image('Сашка'))
+
+
+#api = TextToImageAPI('https://api-key.fusionbrain.ai/',
+#                     api_key=API_KEY,
+#                     secret_key=SECRET_KEY)
+#model_id = api.get_model()
+#uuid = api.generate('heroes of might and magick 3', model_id)
+#image = api.check_generation(uuid)
+#f = open('image3.png', 'wb')
+#f.write(byte_image)
+#print(byte_image_size, WIDTH, HEIGHT)

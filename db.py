@@ -17,10 +17,13 @@ class Base(DeclarativeBase):
 class ImagesORM(Base):
     __tablename__ = 'images'
 
-#    id: Mapped[int] = mapped_column(primary_key=True)
-    title: Mapped[str] = mapped_column(primary_key=True, unique=True)
+    id: Mapped[int] = mapped_column(primary_key=True)
+    title: Mapped[str] = mapped_column(unique=True)
     name: Mapped[Optional[str]]
-    image: Mapped[Optional[bytes]]
+    image: Mapped[Optional[str]]
+    byte_image_size: Mapped[Optional[float]]
+    width: Mapped[Optional[int]]
+    height: Mapped[Optional[int]]
 
 
 async def create_tables():
