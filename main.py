@@ -1,8 +1,10 @@
 from contextlib import asynccontextmanager
-from db import create_tables, delete_tables
-from fastapi import FastAPI
-from router import v1_router
+from fastapi import FastAPI, Depends
 import uvicorn
+from db import create_tables, delete_tables, db_session
+from router import v1_router
+from typing import Annotated
+from sqlalchemy.orm import Session
 
 
 @asynccontextmanager

@@ -1,14 +1,14 @@
-from db import new_session, ImagesORM
-from schemas import Image, ImageAdd
 import sqlalchemy.orm
 from transliterate import translit
+from db import db_session, ImagesORM
 from generate import generate_image
+from schemas import Image, ImageAdd
 
 
 class ImageRep:
     @classmethod
     async def get_image(cls, data: ImageAdd) -> Image:
-        async with new_session() as session:
+        async with db_session() as session:
             image_dict = data.model_dump()
             if data.name:
                 query = sqlalchemy.orm.Query(
@@ -26,7 +26,7 @@ class ImageRep:
 
     @classmethod
     async def add_image(cls, data: ImageAdd) -> Image:
-        async with new_session() as session:
+        async with db_session() as session:
             image_dict = data.model_dump()
             query = sqlalchemy.orm.Query(
                 ImagesORM, session=session

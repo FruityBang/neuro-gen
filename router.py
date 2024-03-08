@@ -1,7 +1,7 @@
 from base64 import b64encode
 from fastapi import APIRouter, HTTPException
 from repository import ImageRep
-from schemas import ImageAdd, Image
+from schemas import Image, ImageAdd
 
 
 v1_router = APIRouter(prefix='/v1/image', tags=['images'])

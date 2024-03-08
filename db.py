@@ -1,13 +1,17 @@
 from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+from sqlalchemy import MetaData
 from typing import Optional
 
 
-engine = create_async_engine(
-    'sqlite+aiosqlite:///images.db'
+URL_DATABASE = (
+    'postgresql+asyncpg://postgres:postgres@127.0.0.1:5432/postgres'
 )
 
-new_session = async_sessionmaker(engine, expire_on_commit=False)
+engine = create_async_engine(URL_DATABASE, future=True, echo=True)
+# ('sqlite+aiosqlite:///images.db')
+
+db_session = async_sessionmaker(engine, expire_on_commit=False)
 
 
 class Base(DeclarativeBase):
@@ -18,9 +22,9 @@ class ImagesORM(Base):
     __tablename__ = 'images'
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    title: Mapped[str] = mapped_column(unique=True)
+    title: Mapped[str] = mapped_column(unique=True)  # index=True
     name: Mapped[Optional[str]]
-    image: Mapped[Optional[str]]
+    image: Mapped[Optional[bytes]]
     byte_image_size: Mapped[Optional[float]]
     width: Mapped[Optional[int]]
     height: Mapped[Optional[int]]
