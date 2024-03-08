@@ -1,6 +1,5 @@
 from db import new_session, ImagesORM
-from schemas import ImageAdd, Image
-from sqlalchemy import select
+from schemas import Image, ImageAdd
 from transliterate import translit
 import sqlalchemy.orm
 from generate import generate_image
@@ -8,15 +7,25 @@ from generate import generate_image
 
 class ImageRep:
     @classmethod
-    async def get_images(cls, ex_image) -> Image:
-# async with new_session() as session:
-# query = select(ImagesORM)
-# res = await session.execute(query)
-# images = res.scalars().all()
-        return ex_image
+    async def get_image(cls, data: ImageAdd) -> Image:
+        async with new_session() as session:
+            image_dict = data.model_dump()
+            if data.name:
+                query = sqlalchemy.orm.Query(
+                    ImagesORM, session=session
+                    ).filter(ImagesORM.name == image_dict['name'])
+                result = await session.execute(query)
+                ex_image = result.scalars().one_or_none()
+                return ex_image
+            query = sqlalchemy.orm.Query(
+                ImagesORM, session=session
+                ).filter(ImagesORM.id == data.id)
+            result = await session.execute(query)
+            ex_image = result.scalars().one_or_none()
+            return ex_image
 
     @classmethod
-    async def add_image(cls, data: ImageAdd):
+    async def add_image(cls, data: ImageAdd) -> Image:
         async with new_session() as session:
             image_dict = data.model_dump()
             query = sqlalchemy.orm.Query(
@@ -30,10 +39,10 @@ class ImageRep:
                 image_dict['title'], 'ru', reversed=True
                 ).lower().replace(' ', '_')
             image_dict['name'] = name + '.png'
-#            image_dict['image'] = open('byteimage.png', 'rb').read()
-#            image_dict['image'] = b"\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x08\x00\x00\x00\x08\x08\x02\x00\x00\x00Km)\xdc\x00\x00\x00\x19IDATx\x9cb\x11ox\xcd\x80\r0a\x15\x1d\xb4\x12\x80\x00\x00\x00\xff\xff3'\x01\x95\xc4\x15\x00|\x00\x00\x00\x00IEND\xaeB`\x82"
-            byte_image, byte_image_size, width, height = (
-                generate_image(image_dict['title']))
+            image_data = (generate_image(image_dict['title']))
+            if isinstance(image_data, str):
+                return image_data
+            byte_image, byte_image_size, width, height = image_data
             image_dict['image'] = byte_image
             image_dict['byte_image_size'] = byte_image_size
             image_dict['width'] = width

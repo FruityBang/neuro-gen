@@ -3,12 +3,12 @@ from typing import Optional
 
 
 class ImageAdd(BaseModel):
-    title: str
+    title: Optional[str] = None
+    name: Optional[str] = None
+    id: Optional[int] = None
 
 
 class Image(ImageAdd):
-    id: int
-    name: str
     image: Optional[str]
     byte_image_size: Optional[float]
     width: Optional[int]
