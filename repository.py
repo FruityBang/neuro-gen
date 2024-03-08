@@ -1,7 +1,7 @@
 from db import new_session, ImagesORM
 from schemas import Image, ImageAdd
-from transliterate import translit
 import sqlalchemy.orm
+from transliterate import translit
 from generate import generate_image
 
 

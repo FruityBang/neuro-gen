@@ -1,8 +1,8 @@
 import base64
-import requests
 import json
-import time
+import requests
 import sys
+import time
 
 
 API_KEY = '72F53422B9BB1C057F769850A722D2CD'
@@ -11,6 +11,13 @@ WIDTH = 1024
 HEIGHT = 680
 CENSORED = 'request have been censored by content policy'
 FAIL = 'fail to generate image'
+KANDINSKY_ERRORS_DICT = {
+    400: 'Неверные параметры запроса или текстовое описание слишком длинное',
+    401:  'Ошибка авторизации. Not your fault brother',
+    404: 'Ресурс не найден. Not your fault dear sir',
+    415: 'Формат содержимого не поддерживается сервером. Not your fault dear',
+    500: 'Ошибка сервера при выполнении запроса. Not your fault at all'
+}
 
 
 class TextToImageAPI:
@@ -26,7 +33,11 @@ class TextToImageAPI:
             self.URL + 'key/api/v1/models',
             headers=self.AUTH_HEADERS
             )
-        print(response.status_code)
+        if response.status_code in KANDINSKY_ERRORS_DICT:
+            return (
+                f'Server status code is {response.status_code}: '
+                f'{KANDINSKY_ERRORS_DICT[response.status_code]}'
+                )
         data = response.json()
         return data[0]['id']
 
@@ -47,16 +58,20 @@ class TextToImageAPI:
             self.URL + 'key/api/v1/text2image/run',
             headers=self.AUTH_HEADERS,
             files=data)
+        if response.status_code in KANDINSKY_ERRORS_DICT:
+            return (
+                f'Server status code is {response.status_code}: '
+                f'{KANDINSKY_ERRORS_DICT[response.status_code]}'
+                )
         data = response.json()
-        return data['uuid']
+        return data
 
-    def check_generation(self, request_id, attempts=10, delay=10):
+    def check_generation(self, request, attempts=10, delay=10):
         while attempts > 0:
             response = requests.get(
-                self.URL + 'key/api/v1/text2image/status/' + request_id,
+                self.URL + 'key/api/v1/text2image/status/' + request['uuid'],
                 headers=self.AUTH_HEADERS)
             data = response.json()
-            data['status'] = 'FAIL'
             if data['censored']:
                 return CENSORED
             if data['status'] == 'FAIL':
@@ -74,24 +89,14 @@ def generate_image(prompt,
 
     api = TextToImageAPI(url=url, api_key=api_key, secret_key=secret_key)
     model_id = api.get_model()
+    if isinstance(model_id, str):
+        return model_id
     uuid = api.generate(prompt=prompt, model_id=model_id)
+    if isinstance(uuid, str):
+        return uuid
     image = api.check_generation(uuid)
     if (image == CENSORED) or (image == FAIL):
         return image
     byte_image = base64.b64decode(image)
     byte_image_size = float('{:.2f}'.format(sys.getsizeof(byte_image) / 1024))
     return byte_image, byte_image_size, WIDTH, HEIGHT
-
-#byte_image, byte_image_size, width, height = (
-#                generate_image('Сашка'))
-
-
-#api = TextToImageAPI('https://api-key.fusionbrain.ai/',
-#                     api_key=API_KEY,
-#                     secret_key=SECRET_KEY)
-#model_id = api.get_model()
-#uuid = api.generate('heroes of might and magick 3', model_id)
-#image = api.check_generation(uuid)
-#f = open('image3.png', 'wb')
-#f.write(byte_image)
-#print(byte_image_size, WIDTH, HEIGHT)

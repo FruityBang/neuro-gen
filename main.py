@@ -1,8 +1,8 @@
-from fastapi import FastAPI
-import uvicorn
 from contextlib import asynccontextmanager
 from db import create_tables, delete_tables
+from fastapi import FastAPI
 from router import v1_router
+import uvicorn
 
 
 @asynccontextmanager
