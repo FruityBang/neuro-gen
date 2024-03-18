@@ -2,3 +2,4 @@
 __pycache__/
 images.db
 migrations/
+alembic.ini

@@ -2,16 +2,21 @@ version: '3.8'
 
 services:
   db:
-    container_name: "db"
+    container_name: "images_db"
     image: postgres:14.1-alpine
     restart: always
+    volumes:
+      - images_db:/var/lib/postgresql/data/
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=postgres
+      - POSTGRES_USER=bobr
+      - POSTGRES_PASSWORD=Kurwa_Perdole
+      - POSTGRES_DB=pg_images_db
     ports:
       - "5432:5432"
 
 networks:
   custom:
     driver: bridge
+
+volumes:
+  images_db:
