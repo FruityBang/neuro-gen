@@ -1,12 +1,16 @@
+"""Module for images generating."""
 import base64
 import json
+import os
 import requests
 import sys
 import time
+from dotenv import load_dotenv
 
+load_dotenv()
 
-API_KEY = '72F53422B9BB1C057F769850A722D2CD'
-SECRET_KEY = '5364984F7DB97F18739D7DC0B2451AB3'
+API_KEY = os.getenv('API_K')
+SECRET_KEY = os.getenv('SECRET_K')
 WIDTH = 1024
 HEIGHT = 680
 CENSORED = 'request have been censored by content policy'
@@ -21,6 +25,7 @@ KANDINSKY_ERRORS_DICT = {
 
 
 class TextToImageAPI:
+    """Class with all methods need to request Kandinsky service."""
     def __init__(self, url, api_key, secret_key):
         self.URL = url
         self.AUTH_HEADERS = {
@@ -29,6 +34,7 @@ class TextToImageAPI:
         }
 
     def get_model(self):
+        """Get actual AI model."""
         response = requests.get(
             self.URL + 'key/api/v1/models',
             headers=self.AUTH_HEADERS
@@ -42,6 +48,7 @@ class TextToImageAPI:
         return data[0]['id']
 
     def generate(self, prompt, model_id, images=1, width=WIDTH, height=HEIGHT):
+        """Make a request with users params."""
         params = {
             'type': 'GENERATE',
             'style': 'UHD',
@@ -67,6 +74,7 @@ class TextToImageAPI:
         return data
 
     def check_generation(self, request, attempts=10, delay=10):
+        """Check status of the generation. Return response anyway whatever."""
         while attempts > 0:
             response = requests.get(
                 self.URL + 'key/api/v1/text2image/status/' + request['uuid'],
@@ -86,7 +94,7 @@ def generate_image(prompt,
                    url='https://api-key.fusionbrain.ai/',
                    api_key=API_KEY,
                    secret_key=SECRET_KEY):
-
+    """Function to be imported wherever if you want it."""
     api = TextToImageAPI(url=url, api_key=api_key, secret_key=secret_key)
     model_id = api.get_model()
     if isinstance(model_id, str):

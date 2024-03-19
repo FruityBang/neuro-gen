@@ -8,23 +8,25 @@ services:
       - images_db:/var/lib/postgresql/data/
     env_file:
       - .env
-    expose:
-      - 5432
-    networks:
-      - image_network  
-
-  image_gen:
-    build: .
-    restart: always
-    depends_on:
-      - db
-    env_file:
-      - .env
-    command: poetry run python -m main
     ports:
-      - "8008:8000"
-    networks:
-      - image_network  
+      - "5432:5432"
+#    expose:
+#      - 5432
+#    networks:
+#      - image_network  
+
+#  image_gen:
+#    build: .
+#    restart: always
+#    depends_on:
+#      - db
+#    env_file:
+#      - .env
+#    command: poetry run python -m main
+#    ports:
+#      - "8008:8000"
+#    networks:
+#      - image_network  
 
 networks:
   image_network:

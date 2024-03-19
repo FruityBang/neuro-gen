@@ -1,3 +1,4 @@
+"""Module with db models."""
 import os
 from dotenv import load_dotenv
 from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
@@ -18,6 +19,7 @@ class Base(DeclarativeBase):
 
 
 class ImagesORM(Base):
+    """Sqlalchemy images model."""
     __tablename__ = 'images'
 
     id: Mapped[int] = mapped_column(primary_key=True)
@@ -30,10 +32,12 @@ class ImagesORM(Base):
 
 
 async def create_tables():
+    """Developing moment."""
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
 
 
 async def delete_tables():
+    """Developing moment."""
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.drop_all)

@@ -1,3 +1,4 @@
+"""Module providing db methods."""
 from fastapi import HTTPException
 import sqlalchemy.orm
 from transliterate import translit
@@ -9,6 +10,7 @@ from schemas import Image, ImageAdd
 class ImageRep:
     @classmethod
     async def get_image(cls, data: ImageAdd) -> Image:
+        """The method to handle with existing images in db."""
         try:
             async with db_session() as session:
                 image_dict = data.model_dump()
@@ -33,6 +35,7 @@ class ImageRep:
 
     @classmethod
     async def add_image(cls, data: ImageAdd) -> Image:
+        """The method for generating images and push 'em to db."""
         try:
             async with db_session() as session:
                 image_dict = data.model_dump()

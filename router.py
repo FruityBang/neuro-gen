@@ -1,3 +1,4 @@
+"""Endpoint handler."""
 from base64 import b64encode
 from fastapi import APIRouter, HTTPException
 from repository import ImageRep
@@ -9,6 +10,12 @@ v1_router = APIRouter(prefix='/v1/image', tags=['images'])
 
 @v1_router.post('')
 async def send_image(image: ImageAdd) -> Image:
+    """The every post request handler for all needs.
+
+    Get 'title' or 'name' or 'id' field. If 'title' than return existed or new
+    base64 encoded image. If 'name' or 'id' than return base64 encoded image
+    if exists.
+    """
     if image.title:
         image_data = await ImageRep.add_image(image)
         if isinstance(image_data, str):
@@ -28,6 +35,7 @@ async def send_image(image: ImageAdd) -> Image:
                 )
         ex_image.image = b64encode(ex_image.image).decode('utf-8')
         return ex_image
+
     elif image.id:
         ex_image = await ImageRep.get_image(image)
         if not ex_image:
@@ -37,15 +45,10 @@ async def send_image(image: ImageAdd) -> Image:
                 )
         ex_image.image = b64encode(ex_image.image).decode('utf-8')
         return ex_image
+
     raise HTTPException(
         status_code=400,
         detail=(
             "'title' or 'name' or 'id' field are not in request BUT should be"
             )
         )
-
-
-# @v1_router.get('')
-# async def get_images() -> list[Image]:
-#     images = await ImageRep.get_images()
-#     return images
