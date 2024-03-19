@@ -2,20 +2,32 @@ version: '3.8'
 
 services:
   db:
-    container_name: "images_db"
     image: postgres:14.1-alpine
     restart: always
     volumes:
       - images_db:/var/lib/postgresql/data/
-    environment:
-      - POSTGRES_USER=bobr
-      - POSTGRES_PASSWORD=Kurwa_Perdole
-      - POSTGRES_DB=pg_images_db
+    env_file:
+      - .env
+    expose:
+      - 5432
+    networks:
+      - image_network  
+
+  image_gen:
+    build: .
+    restart: always
+    depends_on:
+      - db
+    env_file:
+      - .env
+    command: poetry run python -m main
     ports:
-      - "5432:5432"
+      - "8008:8000"
+    networks:
+      - image_network  
 
 networks:
-  custom:
+  image_network:
     driver: bridge
 
 volumes:

@@ -1,5 +1,5 @@
 .venv/
+.env
 __pycache__/
 images.db
-migrations/
-alembic.ini
+Dockerfile

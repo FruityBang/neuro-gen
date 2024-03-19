@@ -1,31 +1,16 @@
+import os
+from dotenv import load_dotenv
 from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
-from sqlalchemy import MetaData
 from typing import Optional
-import asyncio
-import aiomysql
 
+load_dotenv()
 
-URL_DATABASE = (
-    'postgresql+asyncpg://bobr:Kurwa_Perdole@127.0.0.1:5432/pg_images_db'
-)
-
-#URL_DATABASE = (
-#    'mysql+aiomysql://bobr:Kurwa_Perdole@127.0.0.1:5432/mysql_images_db?charset=utf8mb4'
-#)
+URL_DATABASE = os.getenv('URL_DB')
 
 engine = create_async_engine(URL_DATABASE, future=True, echo=True)
-# ('sqlite+aiosqlite:///images.db')
 
 db_session = async_sessionmaker(engine, expire_on_commit=False)
-
-
-#loop = asyncio.get_event_loop()
-#
-#async def connection():
-#    conn = await aiomysql.connect(host='127.0.0.1', port=5432,
-#                                  user='root', password='Kurwa_Perdole',
-#                                  db='mysql_images_db', loop=loop)
 
 
 class Base(DeclarativeBase):
