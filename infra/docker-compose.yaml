@@ -20,8 +20,11 @@ services:
       - db
     env_file:
       - .env
-    command: "poetry run python -m main &&
-              poetry run alembic upgrade heads"
+    command: >
+      sh -c "
+        poetry run alembic upgrade heads &&
+        poetry run python -m main
+      "  
     ports:
       - "8008:8000"
     networks:
