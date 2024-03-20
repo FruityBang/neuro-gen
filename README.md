@@ -1,5 +1,5 @@
-# neuro-gen
-AI generated images service 
+# Neuro-gen
+AI generated images service.
 
 ## Stack
 `Python` `Fastapi` `Pydantic` `SQLAlchemy` `Alembic` `Asyncio` `Uvicorn` `Docker` `PostgreSQL` 
@@ -14,7 +14,7 @@ AI generated images service
 
 ## Installation
 
-1. Clone the only docker-compose.yml from repository:
+1. Clone the only docker-compose.yml from <repository>/infra/.
 
 2. Create a `.env` file in the root directory of the project and add the necessary environment variables as .env.example. Retrieve API_KEY and SECRET_KEY: https://fusionbrain.ai/.
 
