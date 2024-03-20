@@ -10,7 +10,9 @@ from schemas import Image, ImageAdd
 class ImageRep:
     @classmethod
     async def get_image(cls, data: ImageAdd) -> Image:
-        """The method to handle with existing images in db."""
+        """
+        Retrieves image data from the database based on provided parameters.
+        """
         try:
             async with db_session() as session:
                 image_dict = data.model_dump()
@@ -35,7 +37,7 @@ class ImageRep:
 
     @classmethod
     async def add_image(cls, data: ImageAdd) -> Image:
-        """The method for generating images and push 'em to db."""
+        """Generates and adds image data to the database."""
         try:
             async with db_session() as session:
                 image_dict = data.model_dump()

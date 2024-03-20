@@ -12,7 +12,7 @@ class ImageAdd(BaseModel):
 
 class Image(ImageAdd):
     """The model to bind with alchemy."""
-    image: bytes
+    image: str
     byte_image_size: float
     width: int
     height: int

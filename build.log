@@ -1,0 +1,177 @@
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 220B done
+#1 DONE 0.0s
+
+#2 [internal] load .dockerignore
+#2 transferring context: 93B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/python:3.10-slim
+#3 DONE 0.7s
+
+#4 [1/6] FROM docker.io/library/python:3.10-slim@sha256:1326d0fd281d283b077fd249e618339a44c9ca5aae6e05cb4f069a087e827922
+#4 CACHED
+
+#5 [internal] load build context
+#5 transferring context: 19.24kB 0.1s done
+#5 DONE 0.1s
+
+#6 [2/6] RUN pip install poetry==1.8.1
+#6 1.941 Collecting poetry==1.8.1
+#6 2.168   Downloading poetry-1.8.1-py3-none-any.whl (248 kB)
+#6 2.314      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 248.9/248.9 kB 1.7 MB/s eta 0:00:00
+#6 2.466 Collecting keyring<25.0.0,>=24.0.0
+#6 2.526   Downloading keyring-24.3.1-py3-none-any.whl (38 kB)
+#6 2.613 Collecting poetry-plugin-export<2.0.0,>=1.6.0
+#6 2.671   Downloading poetry_plugin_export-1.7.1-py3-none-any.whl (10 kB)
+#6 2.758 Collecting shellingham<2.0,>=1.5
+#6 2.822   Downloading shellingham-1.5.4-py2.py3-none-any.whl (9.8 kB)
+#6 2.906 Collecting tomli<3.0.0,>=2.0.1
+#6 2.965   Downloading tomli-2.0.1-py3-none-any.whl (12 kB)
+#6 3.135 Collecting virtualenv<21.0.0,>=20.23.0
+#6 3.200   Downloading virtualenv-20.25.1-py3-none-any.whl (3.8 MB)
+#6 3.737      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.8/3.8 MB 7.1 MB/s eta 0:00:00
+#6 3.834 Collecting platformdirs<5,>=3.0.0
+#6 3.893   Downloading platformdirs-4.2.0-py3-none-any.whl (17 kB)
+#6 3.995 Collecting tomlkit<1.0.0,>=0.11.4
+#6 4.053   Downloading tomlkit-0.12.4-py3-none-any.whl (37 kB)
+#6 4.147 Collecting packaging>=23.1
+#6 4.206   Downloading packaging-24.0-py3-none-any.whl (53 kB)
+#6 4.216      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 53.5/53.5 kB 5.5 MB/s eta 0:00:00
+#6 4.289 Collecting pexpect<5.0.0,>=4.7.0
+#6 4.351   Downloading pexpect-4.9.0-py2.py3-none-any.whl (63 kB)
+#6 4.591      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 63.8/63.8 kB 226.0 kB/s eta 0:00:00
+#6 4.686 Collecting pyproject-hooks<2.0.0,>=1.0.0
+#6 4.747   Downloading pyproject_hooks-1.0.0-py3-none-any.whl (9.3 kB)
+#6 4.855 Collecting requests<3.0,>=2.26
+#6 4.914   Downloading requests-2.31.0-py3-none-any.whl (62 kB)
+#6 4.925      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 62.6/62.6 kB 6.0 MB/s eta 0:00:00
+#6 5.029 Collecting build<2.0.0,>=1.0.3
+#6 5.087   Downloading build-1.1.1-py3-none-any.whl (19 kB)
+#6 5.164 Collecting crashtest<0.5.0,>=0.4.1
+#6 5.223   Downloading crashtest-0.4.1-py3-none-any.whl (7.6 kB)
+#6 5.330 Collecting trove-classifiers>=2022.5.19
+#6 5.389   Downloading trove_classifiers-2024.3.3-py3-none-any.whl (13 kB)
+#6 5.488 Collecting poetry-core==1.9.0
+#6 5.551   Downloading poetry_core-1.9.0-py3-none-any.whl (309 kB)
+#6 5.593      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 309.5/309.5 kB 7.5 MB/s eta 0:00:00
+#6 5.674 Collecting pkginfo<2.0.0,>=1.9.4
+#6 5.733   Downloading pkginfo-1.10.0-py3-none-any.whl (30 kB)
+#6 5.825 Collecting cleo<3.0.0,>=2.1.0
+#6 5.885   Downloading cleo-2.1.0-py3-none-any.whl (78 kB)
+#6 5.897      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 78.7/78.7 kB 6.9 MB/s eta 0:00:00
+#6 5.977 Collecting cachecontrol[filecache]<0.15.0,>=0.14.0
+#6 6.037   Downloading cachecontrol-0.14.0-py3-none-any.whl (22 kB)
+#6 6.351 Collecting dulwich<0.22.0,>=0.21.2
+#6 6.412   Downloading dulwich-0.21.7-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (514 kB)
+#6 6.484      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 514.7/514.7 kB 7.3 MB/s eta 0:00:00
+#6 6.563 Collecting fastjsonschema<3.0.0,>=2.18.0
+#6 6.623   Downloading fastjsonschema-2.19.1-py3-none-any.whl (23 kB)
+#6 6.709 Collecting installer<0.8.0,>=0.7.0
+#6 6.770   Downloading installer-0.7.0-py3-none-any.whl (453 kB)
+#6 6.833      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 453.8/453.8 kB 7.4 MB/s eta 0:00:00
+#6 6.912 Collecting requests-toolbelt<2.0.0,>=1.0.0
+#6 6.970   Downloading requests_toolbelt-1.0.0-py2.py3-none-any.whl (54 kB)
+#6 6.983      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 54.5/54.5 kB 6.1 MB/s eta 0:00:00
+#6 7.222 Collecting msgpack<2.0.0,>=0.5.2
+#6 7.282   Downloading msgpack-1.0.8-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (385 kB)
+#6 7.333      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 385.1/385.1 kB 7.8 MB/s eta 0:00:00
+#6 7.433 Collecting filelock>=3.8.0
+#6 7.491   Downloading filelock-3.13.1-py3-none-any.whl (11 kB)
+#6 8.670 Collecting rapidfuzz<4.0.0,>=3.0.0
+#6 8.732   Downloading rapidfuzz-3.6.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.4 MB)
+#6 9.298      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.4/3.4 MB 6.0 MB/s eta 0:00:00
+#6 9.420 Collecting urllib3>=1.25
+#6 9.479   Downloading urllib3-2.2.1-py3-none-any.whl (121 kB)
+#6 9.502      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 121.1/121.1 kB 5.6 MB/s eta 0:00:00
+#6 9.602 Collecting jeepney>=0.4.2
+#6 9.662   Downloading jeepney-0.8.0-py3-none-any.whl (48 kB)
+#6 9.672      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 48.4/48.4 kB 5.1 MB/s eta 0:00:00
+#6 9.749 Collecting jaraco.classes
+#6 9.808   Downloading jaraco.classes-3.3.1-py3-none-any.whl (6.8 kB)
+#6 9.933 Collecting importlib-metadata>=4.11.4
+#6 9.992   Downloading importlib_metadata-7.0.2-py3-none-any.whl (24 kB)
+#6 10.07 Collecting SecretStorage>=3.2
+#6 10.13   Downloading SecretStorage-3.3.3-py3-none-any.whl (15 kB)
+#6 10.22 Collecting ptyprocess>=0.5
+#6 10.28   Downloading ptyprocess-0.7.0-py2.py3-none-any.whl (13 kB)
+#6 10.50 Collecting charset-normalizer<4,>=2
+#6 10.56   Downloading charset_normalizer-3.3.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (142 kB)
+#6 10.59      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 142.1/142.1 kB 5.7 MB/s eta 0:00:00
+#6 10.67 Collecting idna<4,>=2.5
+#6 10.72   Downloading idna-3.6-py3-none-any.whl (61 kB)
+#6 10.74      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 61.6/61.6 kB 4.7 MB/s eta 0:00:00
+#6 10.83 Collecting certifi>=2017.4.17
+#6 10.89   Downloading certifi-2024.2.2-py3-none-any.whl (163 kB)
+#6 10.92      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 163.8/163.8 kB 6.1 MB/s eta 0:00:00
+#6 11.05 Collecting distlib<1,>=0.3.7
+#6 11.11   Downloading distlib-0.3.8-py2.py3-none-any.whl (468 kB)
+#6 11.19      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 468.9/468.9 kB 6.0 MB/s eta 0:00:00
+#6 11.32 Collecting zipp>=0.5
+#6 11.38   Downloading zipp-3.18.1-py3-none-any.whl (8.2 kB)
+#6 11.79 Collecting cryptography>=2.0
+#6 11.85   Downloading cryptography-42.0.5-cp39-abi3-manylinux_2_28_x86_64.whl (4.6 MB)
+#6 12.60      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.6/4.6 MB 6.1 MB/s eta 0:00:00
+#6 12.76 Collecting more-itertools
+#6 12.82   Downloading more_itertools-10.2.0-py3-none-any.whl (57 kB)
+#6 12.84      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 57.0/57.0 kB 4.6 MB/s eta 0:00:00
+#6 13.11 Collecting cffi>=1.12
+#6 13.17   Downloading cffi-1.16.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (443 kB)
+#6 13.25      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 443.9/443.9 kB 6.2 MB/s eta 0:00:00
+#6 13.35 Collecting pycparser
+#6 13.41   Downloading pycparser-2.21-py2.py3-none-any.whl (118 kB)
+#6 13.43      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 118.7/118.7 kB 6.6 MB/s eta 0:00:00
+#6 13.65 Installing collected packages: trove-classifiers, ptyprocess, fastjsonschema, distlib, zipp, urllib3, tomlkit, tomli, shellingham, rapidfuzz, pycparser, poetry-core, platformdirs, pkginfo, pexpect, packaging, msgpack, more-itertools, jeepney, installer, idna, filelock, crashtest, charset-normalizer, certifi, virtualenv, requests, pyproject-hooks, jaraco.classes, importlib-metadata, dulwich, cleo, cffi, requests-toolbelt, cryptography, cachecontrol, build, SecretStorage, keyring, poetry-plugin-export, poetry
+#6 15.60 Successfully installed SecretStorage-3.3.3 build-1.1.1 cachecontrol-0.14.0 certifi-2024.2.2 cffi-1.16.0 charset-normalizer-3.3.2 cleo-2.1.0 crashtest-0.4.1 cryptography-42.0.5 distlib-0.3.8 dulwich-0.21.7 fastjsonschema-2.19.1 filelock-3.13.1 idna-3.6 importlib-metadata-7.0.2 installer-0.7.0 jaraco.classes-3.3.1 jeepney-0.8.0 keyring-24.3.1 more-itertools-10.2.0 msgpack-1.0.8 packaging-24.0 pexpect-4.9.0 pkginfo-1.10.0 platformdirs-4.2.0 poetry-1.8.1 poetry-core-1.9.0 poetry-plugin-export-1.7.1 ptyprocess-0.7.0 pycparser-2.21 pyproject-hooks-1.0.0 rapidfuzz-3.6.2 requests-2.31.0 requests-toolbelt-1.0.0 shellingham-1.5.4 tomli-2.0.1 tomlkit-0.12.4 trove-classifiers-2024.3.3 urllib3-2.2.1 virtualenv-20.25.1 zipp-3.18.1
+#6 15.60 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+#6 15.90 
+#6 15.90 [notice] A new release of pip is available: 23.0.1 -> 24.0
+#6 15.90 [notice] To update, run: pip install --upgrade pip
+#6 DONE 16.4s
+
+#7 [3/6] RUN mkdir -p /app
+#7 DONE 0.3s
+
+#8 [4/6] COPY . /app
+#8 DONE 0.2s
+
+#9 [5/6] WORKDIR /app
+#9 DONE 0.1s
+
+#10 [6/6] RUN poetry install
+#10 0.860 Creating virtualenv neuro-gen-9TtSrW0h-py3.10 in /root/.cache/pypoetry/virtualenvs
+#10 1.270 Installing dependencies from lock file
+#10 1.421 
+#10 1.421 Package operations: 47 installs, 0 updates, 0 removals
+#10 1.421 
+#10 1.422   - Installing exceptiongroup (1.2.0)
+#10 1.423   - Installing idna (3.6)
+#10 1.424   - Installing sniffio (1.3.1)
+#10 1.424   - Installing typing-extensions (4.10.0)
+#10 2.140   - Installing annotated-types (0.6.0)
+#10 2.142   - Installing anyio (4.3.0)
+#10 2.143   - Installing h11 (0.14.0)
+#10 2.144   - Installing pydantic-core (2.16.3)
+#10 2.145   - Installing certifi (2024.2.2)
+#10 2.845   - Installing click (8.1.7)
+#10 2.847   - Installing dnspython (2.6.1)
+#10 2.849   - Installing httpcore (1.0.4)
+#10 2.850   - Installing httptools (0.6.1)
+#10 2.851   - Installing pydantic (2.6.3)
+#10 2.853   - Installing markupsafe (2.1.5)
+#10 2.875   - Installing python-dotenv (1.0.1)
+#10 2.877   - Installing greenlet (3.0.3)
+#10 2.999   - Installing pyyaml (6.0.1)
+#10 3.096   - Installing uvloop (0.19.0)
+#10 3.273   - Installing watchfiles (0.21.0)
+#10 3.303   - Installing websockets (12.0)
+#10 6.165   - Installing async-timeout (4.0.3)
+#10 6.166   - Installing charset-normalizer (3.3.2)
+#10 6.168   - Installing email-validator (2.1.1)
+#10 6.168   - Installing itsdangerous (2.1.2)
+#10 6.169   - Installing httpx (0.27.0)
+#10 6.170   - Installing jinja2 (3.1.3)
+#10 6.172   - Installing mako (1.3.2)
+#10 6.173   - Installing numpy (1.26.4)
+#10 CANCELED
+ERROR: failed to solve: Canceled: context canceled

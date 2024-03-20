@@ -9,5 +9,3 @@ COPY . /app
 WORKDIR /app
 
 RUN poetry install 
-
-# CMD ["poetry", "run", "python", "-m", "main"]

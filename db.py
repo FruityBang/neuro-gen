@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
-from typing import Optional
+
 
 load_dotenv()
 
@@ -23,12 +23,12 @@ class ImagesORM(Base):
     __tablename__ = 'images'
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    title: Mapped[str] = mapped_column(unique=True)  # index=True
-    name: Mapped[Optional[str]]
-    image: Mapped[Optional[bytes]]
-    byte_image_size: Mapped[Optional[float]]
-    width: Mapped[Optional[int]]
-    height: Mapped[Optional[int]]
+    title: Mapped[str] = mapped_column(index=True, unique=True)
+    name: Mapped[str]
+    image: Mapped[bytes]
+    byte_image_size: Mapped[float]
+    width: Mapped[int]
+    height: Mapped[int]
 
 
 async def create_tables():

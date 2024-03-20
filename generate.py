@@ -9,8 +9,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-API_KEY = os.getenv('API_K')
-SECRET_KEY = os.getenv('SECRET_K')
+API_K = os.getenv('API_KEY')
+SECRET_K = os.getenv('SECRET_KEY')
 WIDTH = 1024
 HEIGHT = 680
 CENSORED = 'request have been censored by content policy'
@@ -25,7 +25,7 @@ KANDINSKY_ERRORS_DICT = {
 
 
 class TextToImageAPI:
-    """Class with all methods need to request Kandinsky service."""
+    """Class with all methods needed to request Kandinsky service."""
     def __init__(self, url, api_key, secret_key):
         self.URL = url
         self.AUTH_HEADERS = {
@@ -34,7 +34,7 @@ class TextToImageAPI:
         }
 
     def get_model(self):
-        """Get actual AI model."""
+        """Retrieves the actual AI model.."""
         response = requests.get(
             self.URL + 'key/api/v1/models',
             headers=self.AUTH_HEADERS
@@ -48,7 +48,7 @@ class TextToImageAPI:
         return data[0]['id']
 
     def generate(self, prompt, model_id, images=1, width=WIDTH, height=HEIGHT):
-        """Make a request with users params."""
+        """Makes a request with user params."""
         params = {
             'type': 'GENERATE',
             'style': 'UHD',
@@ -74,7 +74,7 @@ class TextToImageAPI:
         return data
 
     def check_generation(self, request, attempts=10, delay=10):
-        """Check status of the generation. Return response anyway whatever."""
+        """Checks status of the generation. Return response anyway whatever."""
         while attempts > 0:
             response = requests.get(
                 self.URL + 'key/api/v1/text2image/status/' + request['uuid'],
@@ -92,8 +92,8 @@ class TextToImageAPI:
 
 def generate_image(prompt,
                    url='https://api-key.fusionbrain.ai/',
-                   api_key=API_KEY,
-                   secret_key=SECRET_KEY):
+                   api_key=API_K,
+                   secret_key=SECRET_K):
     """Function to be imported wherever if you want it."""
     api = TextToImageAPI(url=url, api_key=api_key, secret_key=secret_key)
     model_id = api.get_model()

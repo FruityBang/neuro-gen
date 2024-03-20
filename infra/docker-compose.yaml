@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:14.1-alpine
+    restart: always
+    volumes:
+      - images_db:/var/lib/postgresql/data/
+    env_file:
+      - .env
+    expose:
+      - 5432
+    networks:
+      - image_network  
+
+  image_gen:
+    image: fruitybang/neuro_gen:latest
+    restart: always
+    depends_on:
+      - db
+    env_file:
+      - .env
+    command: "poetry run python -m main &&
+              poetry run alembic upgrade heads"
+    ports:
+      - "8008:8000"
+    networks:
+      - image_network  
+
+networks:
+  image_network:
+    driver: bridge
+
+volumes:
+  images_db:

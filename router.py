@@ -12,15 +12,15 @@ v1_router = APIRouter(prefix='/v1/image', tags=['images'])
 async def send_image(image: ImageAdd) -> Image:
     """The every post request handler for all needs.
 
-    Get 'title' or 'name' or 'id' field. If 'title' than return existed or new
-    base64 encoded image. If 'name' or 'id' than return base64 encoded image
-    if exists.
+    Expects a JSON object with one of the following fields: 'title', 'name'
+    or 'id'. If 'title' than return existed or new base64 encoded image.
+    If 'name' or 'id' than return the base64 encoded image data if exists.
     """
     if image.title:
         image_data = await ImageRep.add_image(image)
         if isinstance(image_data, str):
             raise HTTPException(
-                status_code=400,
+                status_code=418,
                 detail=f"Kandinsky says: '{image_data}'"
             )
         image_data.image = b64encode(image_data.image).decode('utf-8')
