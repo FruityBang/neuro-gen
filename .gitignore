@@ -1,5 +1,7 @@
 .venv/
+.idea/
 .env
+.env_origin
 __pycache__/
 images.db
 Dockerfile

@@ -1,11 +1,11 @@
 """Endpoint handler."""
 from base64 import b64encode
 from fastapi import APIRouter, HTTPException
-from repository import ImageRep
-from schemas import Image, ImageAdd
+from V1_api.V1_repository import ImageRep
+from V1_api.V1_schemas import Image, ImageAdd
 
 
-v1_router = APIRouter(prefix='/v1/image', tags=['images'])
+v1_router = APIRouter(prefix='/v1/image', tags=['V1_images'])
 
 
 @v1_router.post('')
@@ -23,6 +23,7 @@ async def send_image(image: ImageAdd) -> Image:
                 status_code=418,
                 detail=f"Kandinsky says: '{image_data}'"
             )
+        print(f'imagedata {image_data}')
         image_data.image = b64encode(image_data.image).decode('utf-8')
         return image_data
 

@@ -18,15 +18,28 @@ class Base(DeclarativeBase):
     pass
 
 
-class ImagesORM(Base):
+class ImageORM(Base):
     """Sqlalchemy images model."""
-    __tablename__ = 'images'
+    __tablename__ = 'image'
 
     id: Mapped[int] = mapped_column(primary_key=True)
     title: Mapped[str] = mapped_column(index=True, unique=True)
     name: Mapped[str]
     image: Mapped[bytes]
     byte_image_size: Mapped[float]
+    width: Mapped[int]
+    height: Mapped[int]
+
+
+class ImagesORM(Base):
+    """Sqlalchemy images model V2."""
+    __tablename__ = 'images'
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    title: Mapped[str] = mapped_column(index=True, unique=True)
+    name: Mapped[str]
+    images: Mapped[bytes]
+    byte_image_size_kB: Mapped[float]
     width: Mapped[int]
     height: Mapped[int]
 

@@ -8,27 +8,29 @@ services:
       - images_db:/var/lib/postgresql/data/
     env_file:
       - .env
+    ports:
+      - "5432:5432"
     expose:
       - 5432
     networks:
       - image_network  
 
-  image_gen:
-    image: fruitybang/neuro_gen:latest
-    restart: always
-    depends_on:
-      - db
-    env_file:
-      - .env
-    command: >
-      sh -c "
-        poetry run alembic upgrade heads &&
-        poetry run python -m main
-      "  
-    ports:
-      - "8008:8000"
-    networks:
-      - image_network  
+#  image_gen:
+#    image: fruitybang/neuro_gen:latest
+#    restart: always
+#    depends_on:
+#      - db
+#    env_file:
+#      - .env
+#    command: >
+#      sh -c "
+#        poetry run alembic upgrade heads &&
+#        poetry run python -m main
+#      "
+#    ports:
+#      - "8008:8000"
+#    networks:
+#      - image_network
 
 networks:
   image_network:

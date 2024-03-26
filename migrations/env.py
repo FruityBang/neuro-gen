@@ -8,11 +8,12 @@ from alembic import context
 import os
 from dotenv import load_dotenv
 
-
 load_dotenv()
+
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
+
 db_url = os.getenv('ALEMBIC_URL_DB')
 
 # Interpret the config file for Python logging.
